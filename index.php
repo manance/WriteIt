@@ -34,7 +34,7 @@
                 </div>
                 <div class="buttons">
                     <button class="button" type="submit" name="register">Register</button>
-                    <a class="button" id="special" href="login.php">Login</a>
+                    <a class="button" href="login.php">Login</a>
                 </div>  
             </form>
         </register>   

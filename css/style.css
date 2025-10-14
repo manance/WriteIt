@@ -84,7 +84,11 @@ body{
     text-align: center;
     line-height: 3rem;
     text-decoration: none;
-    hover{
-        cursor: pointer;
-    }
+}
+.button:hover{
+    cursor: pointer;
+    background-color: #774e87;
+    transition: 0.3s;
+    width: 49%;
+    height: 3.1rem;
 }
