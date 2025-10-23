@@ -37,9 +37,9 @@
     <box class="box">
         <navbar class="nav">
             <a href="profile.php" class="profile"><img class="prof_img" src="img/user.png" alt=""></a>
-            <div class="searchbar">
-                <form class="" action="" method="post">
-                    <input class="" type="text" placeholder="Search your songs..." name="search">
+            <div class="search_bar">
+                <form class="form" action="" method="post">
+                    <input class="search" type="text" placeholder="Search your songs..." name="search">
                     <select name="Filter" class="dropdown" name="dropdown">
                         <option value="" disabled selected>Filter</option>
                         <option value="A">Title A->Z</option>
@@ -50,8 +50,8 @@
                     <input type="submit" class="submit" name="submit">
                 </form>
             </div>
-            <form action=" " method="post">
-                <button type="submit" name="logout">Logout</button>
+            <form action=" " method="post" class="logout_form">
+                <button class="logout" type="submit" name="logout">Logout</button>
             </form>
         </navbar>
         <a href="write.php">Write</a>        
