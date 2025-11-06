@@ -49,31 +49,54 @@
         </navbar>
         <main class="main">
             <div class="notes">
-
+                <div class="main_notes">
+                    <?php
+                    
+                        if(isset($_POST['chord'])){
+                            echo $_POST['chord'];
+                        }
+                    
+                    ?>
+                </div>
             </div>
             <div class="elements">
                 <div class="select">
                     <form method="post" action="" class="options">
-                        <button class="pauses" type="submit" name="pauses">PAUSES</button>
-                        <button class="symbols" type="submit" name="symbols">SYMBOLS</button>
+                        <button class="pauses" type="submit" name="choice" value="1">PAUSES</button>
+                        <button class="symbols" type="submit" name="choice" value="2">CHORDS</button>
                     </form>
                 </div>
                 <div class="search">
                     <form action="" method="post" class="filter">
-                        <input type="text" class="base_note" placeholder="Search base by note" name="base">
+                        <input type="text" class="base_note" placeholder="Search chord by base" name="base">
                         <button class="enter" type="submit" name="enter">SEARCH</button>
                     </form>
                 </div>
                 <div class="data">
-                    <?php
-                        $name = 'chord';
-                        if(isset($_POST['pauses'])){
-                            echo "pauses";
-                        }elseif(isset($_POST['symbols'])){
-                            echo "<p>" . $data[0]['chord'] . "</p>";
-                        }
-
-                    ?>
+                    <form method="post" action="" class="chords">
+                        <?php
+                            if(!isset($_POST['choice'])){
+                                foreach ($data as $chord){
+                                    echo "<button type='submit' name='chord' class='chord' value='" . $chord['chord'] . "'>" . $chord['chord'] . "</button>";
+                                }
+                            }elseif($_POST['choice'] == 1){
+                                echo "pauses";
+                            }elseif($_POST['choice'] == 2){
+                                foreach ($data as $chord){
+                                    echo "<button type='submit' name='chord' class='chord' value='" . $chord['chord'] . "'>" . $chord['chord'] . "</button>";
+                                }
+                            }elseif(isset($_POST['enter'])){
+                                if($_POST['base'] === ""){
+                                    echo "<div class='error'>No base note were entered!</div>";
+                                }elseif(isset($_POST['base'])){
+                                    $base = $_POST['base'];
+                                    foreach ($data2[$base] as $chord){
+                                        echo "<button type='submit' name='chord' class='chord' value='" . $chord . "'>" . $chord . "</button>";
+                                    } 
+                                }
+                            }
+                        ?>
+                    </form>
                 </div>
             </div>
         </main>
