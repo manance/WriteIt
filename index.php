@@ -21,7 +21,7 @@
 <body>
     <box class="box">
         <header class="header">
-        <h1 class="title">WriteIt</h1>
+            <h1 class="title">WriteIt</h1>
         </header>
         <register class="register">
             <form class="form" action="db.php" method="post">
