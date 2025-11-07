@@ -34,6 +34,8 @@
                     <a class="button" href="index.php">Register</a>
                     <button class="button" type="submit" name="login">Login</button>                    
                 </div>
+                <div class="error">
+                </div>
             </form>
         </register>
     </box>   

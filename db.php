@@ -57,7 +57,7 @@
 
             $row = mysqli_fetch_array($query_run);
 
-            if($row['PASSWORD'] == $password){
+            if(password_verify($password, $row['PASSWORD'])){
 
                 return TRUE;
 
@@ -72,28 +72,28 @@
     
     if(isset($_POST['register'])){
 
-        $flname = $_POST['name'];
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $flname = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');
+        $username = htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8');
+        $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         registerUser($conn, $flname, $username, $email, $password);
 
     }elseif(isset($_POST['login'])){
 
-        $flname = $_POST['name'];
+        // $flname = $_POST['name'];
         $username = $_POST['username'];
-        $email = $_POST['email'];
+        // $email = $_POST['email'];
         $password = $_POST['password'];
 
-        if(loginUser($conn, $username, $password) === TRUE){
+        if(loginUser($conn, $username, $password) == TRUE){
 
             session_start();
             $_SESSION['username'] = $username;
             header ("Location: home.php");
 
         }else{
-
-            echo "Failed to login!";
+            
+            $error = 1;
 
         }
     }
