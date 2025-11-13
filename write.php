@@ -1,5 +1,5 @@
 <?php
-    include 'db.php';
+
     
     session_start();
     if(!isset($_SESSION['username'])){
@@ -19,6 +19,17 @@
         }elseif ($_POST['button'] == 2){
             
         }
+    }
+
+
+
+    require('sheet.class.php');
+    if(isset($_POST['chord'])){
+
+        $sheet = new makeSheet($_POST['chord'], $_SESSION['username']);
+
+        $sheet->makeJSON();
+
     }
 ?>
 <!DOCTYPE html>
