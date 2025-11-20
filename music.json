@@ -1,4 +1,23 @@
-{
-    "author": "Paksis",
-    "chord": "C#7"
-}
+[
+    {
+        "name": "Zvaigznes",
+        "author": "Paksis",
+        "chord": [
+            "Cmaj7"
+        ]
+    },
+    {
+        "name": "PRPRPR",
+        "author": "Grrrrr",
+        "chord": [
+            "C"
+        ]
+    },
+    {
+        "name": "PRPRPR",
+        "author": "Grrrrr",
+        "chord": [
+            "Caug"
+        ]
+    }
+]

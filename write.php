@@ -4,7 +4,16 @@
     session_start();
     if(!isset($_SESSION['username'])){
         header('location: index.php');
+        session_destroy();
         exit();
+    }
+
+    if(isset($_POST['name_enter'])){
+        if($_POST['name'] == ""){
+            
+        }else{
+            $_SESSION['sheet_name'] = $_POST['name'];
+        }
     }
 
     $json = file_get_contents('chords.json');
@@ -12,6 +21,9 @@
     
     $json2 = file_get_contents('chords_base.json');
     $data2 = json_decode($json2, true);
+
+    $json3 = file_get_contents('music.json');
+    $data3 = json_decode($json3, true);
 
     if(isset($_POST['button'])){
         if($_POST['button'] == 1){
@@ -21,14 +33,21 @@
         }
     }
 
-
-
     require('sheet.class.php');
     if(isset($_POST['chord'])){
 
-        $sheet = new makeSheet($_POST['chord'], $_SESSION['username']);
-
-        $sheet->makeJSON();
+        $sheet = new makeSheet($_POST['chord'], $_SESSION['username'], $_SESSION['sheet_name']);
+        if(isset($data3)){
+            foreach($data3 as $x){
+                if($x['name'] != $_SESSION['sheet_name']){
+                    $sheet->makeJSON();
+                }else{
+                    $sheet->updateJSON();
+                }
+            }
+        }else{
+            $sheet->makeJSON();
+        }
 
     }
 ?>
@@ -53,9 +72,15 @@
     <box class="box">
         <navbar class="nav">
             <a href="home.php" class="home"><img class="home_img" src="img/binder.png" alt="binder - home"></a>
+            
+            //Doestroying song name session needs to be done
+            
+            <form action="" method="post" class="name">
+                <input type="text" class="name" name="name" placeholder="Enter sheet name">
+                <input type="submit" class="name_enter" name="name_enter" value="ENTER">
+            </form>
             <form method="post" action="" class="buttons">
                 <button class="back" type="submit" name="button" value="1">BACK</button>
-                <button class="save" type="submit" name="button" value="2">SAVE</button>
             </form>
         </navbar>
         <main class="main">
@@ -86,24 +111,26 @@
                 <div class="data">
                     <form method="post" action="" class="chords">
                         <?php
-                            if(!isset($_POST['choice'])){
-                                foreach ($data as $chord){
-                                    echo "<button type='submit' name='chord' class='chord' value='" . $chord['chord'] . "'>" . $chord['chord'] . "</button>";
-                                }
-                            }elseif($_POST['choice'] == 1){
-                                echo "pauses";
-                            }elseif($_POST['choice'] == 2){
-                                foreach ($data as $chord){
-                                    echo "<button type='submit' name='chord' class='chord' value='" . $chord['chord'] . "'>" . $chord['chord'] . "</button>";
-                                }
-                            }elseif(isset($_POST['enter'])){
+                            if(isset($_POST['enter'])){
                                 if($_POST['base'] === ""){
                                     echo "<div class='error'>No base note were entered!</div>";
-                                }elseif(isset($_POST['base'])){
+                                }else{
                                     $base = $_POST['base'];
-                                    foreach ($data2[$base] as $chord){
-                                        echo "<button type='submit' name='chord' class='chord' value='" . $chord . "'>" . $chord . "</button>";
-                                    } 
+                                    if(isset($data2[$base])){
+                                        foreach ($data2[$base] as $chord){
+                                            echo "<button type='submit' name='chord' class='chord' value='" . $chord . "'>" . $chord . "</button>";
+                                        } 
+                                    }else{
+                                        echo "<div class='error'>No chords found for the entered base note!</div>";
+                                    }
+                                    
+                                }
+                            }elseif(isset($_POST['choice']) && $_POST['choice'] == 1){
+                                echo "pauses";
+                                
+                            }else{
+                                foreach ($data as $chord){
+                                    echo "<button type='submit' name='chord' class='chord' value='" . $chord['chord'] . "'>" . $chord['chord'] . "</button>";
                                 }
                             }
                         ?>

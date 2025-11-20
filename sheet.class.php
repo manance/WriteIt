@@ -2,42 +2,49 @@
 
     class makeSheet{
 
-        // private $name;
         private $data;
-        private $user;
-        // private $username;
-        // private $chord;
-        // private $chords;
-        // private $song; // array
-        // private $storage = 'music.json';
-        // private $stored_songs;
+        private $array;
 
         public function __construct(string $postData){
 
             $this->data = $postData;
-
-        }
-
-
-
-        public function makeJSON () {
-
             $username = $this->getUserData();
-            $chord = $this->data;
+            $name = $this->getName();
+            $chord = [];
+            array_push($chord, $this->data);
 
-            $jsonData = file_get_contents('music.json');
-            $pureData = json_decode($jsonData, true);
-
-            $json = [
+            $this->array = [
+                "name" => $name,
                 "author" => $username,
                 "chord" => $chord
             ];
 
-            file_put_contents('music.json', json_encode($json, JSON_PRETTY_PRINT));
+        }
 
+        public function makeJSON () {
+            $data = json_decode(file_get_contents('music.json'), true);
+            if ($data != null){
+                $list = $data;
+                $list[] = $this->array;
+            } else {
+                $list = [];
+                $list[] = $this->array;
+            }
+            file_put_contents('music.json', json_encode($list, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        }
 
-            echo $chord . $username;
+        public function updateJSON () {
 
+            //Finish this function later
+
+            $data = json_decode(file_get_contents('music.json'), true);
+            foreach($data as $x){
+                if($x['name'] == $this->getName()){
+                    echo $x['name'];
+                    $x['chord'][] = $this->data;
+                }
+            }
+            file_put_contents('music.json', json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
         }
 
@@ -50,6 +57,14 @@
             }
         }
 
+        private function getName () {
+            if (isset($_SESSION['sheet_name'])){
+
+                $name = $_SESSION['sheet_name'];
+                return $name;
+
+            }
+        }
     }
 
 ?>
