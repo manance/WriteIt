@@ -10,7 +10,7 @@
 
     if(isset($_POST['name_enter'])){
         if($_POST['name'] == ""){
-            
+
         }else{
             $_SESSION['sheet_name'] = $_POST['name'];
         }
@@ -35,20 +35,18 @@
 
     require('sheet.class.php');
     if(isset($_POST['chord'])){
-
-        $sheet = new makeSheet($_POST['chord'], $_SESSION['username'], $_SESSION['sheet_name']);
-        if(isset($data3)){
-            foreach($data3 as $x){
-                if($x['name'] != $_SESSION['sheet_name']){
-                    $sheet->makeJSON();
-                }else{
-                    $sheet->updateJSON();
+        if(isset($_SESSION['sheet_name'])){
+            $sheet = new makeSheet($_POST['chord'], $_SESSION['username'], $_SESSION['sheet_name']);
+            if(isset($data3)){
+                foreach($data3 as $x){
+                    if($x['name'] == $_SESSION['sheet_name']){
+                        $sheet->updateJSON();
+                    }
                 }
+            }else{
+                $sheet->makeJSON();
             }
-        }else{
-            $sheet->makeJSON();
         }
-
     }
 ?>
 <!DOCTYPE html>
@@ -73,7 +71,7 @@
         <navbar class="nav">
             <a href="home.php" class="home"><img class="home_img" src="img/binder.png" alt="binder - home"></a>
             
-            //Doestroying song name session needs to be done
+            <!--Doestroying song name session needs to be done-->
             
             <form action="" method="post" class="name">
                 <input type="text" class="name" name="name" placeholder="Enter sheet name">

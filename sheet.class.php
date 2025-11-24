@@ -11,7 +11,7 @@
             $username = $this->getUserData();
             $name = $this->getName();
             $chord = [];
-            array_push($chord, $this->data);
+            $chord[] = $this->data;
 
             $this->array = [
                 "name" => $name,
@@ -22,9 +22,9 @@
         }
 
         public function makeJSON () {
-            $data = json_decode(file_get_contents('music.json'), true);
-            if ($data != null){
-                $list = $data;
+            $sheet = json_decode(file_get_contents('music.json'), true);
+            if ($sheet != null){
+                $list = $sheet;
                 $list[] = $this->array;
             } else {
                 $list = [];
@@ -36,15 +36,15 @@
         public function updateJSON () {
 
             //Finish this function later
-
-            $data = json_decode(file_get_contents('music.json'), true);
-            foreach($data as $x){
+            $json = json_decode(file_get_contents('music.json'), true);
+            
+            foreach($json as &$x){
                 if($x['name'] == $this->getName()){
-                    echo $x['name'];
                     $x['chord'][] = $this->data;
                 }
             }
-            file_put_contents('music.json', json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+            
+            file_put_contents('music.json', json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
         }
 

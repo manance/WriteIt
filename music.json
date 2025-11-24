@@ -1,23 +1,13 @@
 [
     {
-        "name": "Zvaigznes",
+        "name": "Patriks",
         "author": "Paksis",
         "chord": [
-            "Cmaj7"
-        ]
-    },
-    {
-        "name": "PRPRPR",
-        "author": "Grrrrr",
-        "chord": [
-            "C"
-        ]
-    },
-    {
-        "name": "PRPRPR",
-        "author": "Grrrrr",
-        "chord": [
-            "Caug"
+            "C",
+            "Cmaj7",
+            "C",
+            "Cmaj7",
+            "C#"
         ]
     }
 ]
