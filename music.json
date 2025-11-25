@@ -1,13 +1,62 @@
 [
     {
+        "name": "Stars",
+        "author": "Paksis",
+        "chord": [
+            "C",
+            "Cm",
+            "C7",
+            "Cm7",
+            "C#",
+            "Caug",
+            "Cdim"
+        ]
+    },
+    {
+        "name": "Gustavs",
+        "author": "Paksis",
+        "chord": [
+            "C",
+            "Cm",
+            "C7"
+        ]
+    },
+    {
+        "name": "Patriks Puzulis",
+        "author": "Paksis",
+        "chord": [
+            "C",
+            "Cm",
+            "C7",
+            "Cm7"
+        ]
+    },
+    {
+        "name": "Vidzemes Tehnoloģiju un Dizaina Tehnikums",
+        "author": "Paksis",
+        "chord": [
+            "C",
+            "Cm",
+            "C7",
+            "Cm7"
+        ]
+    },
+    {
         "name": "Patriks",
         "author": "Paksis",
         "chord": [
             "C",
-            "Cmaj7",
-            "C",
-            "Cmaj7",
-            "C#"
+            "Cm",
+            "C7",
+            "Cm7",
+            "C#",
+            "Caug",
+            "Cdim",
+            "Cdim",
+            "Cdim",
+            "Cdim",
+            "Cdim",
+            "Cmaj7"
         ]
     }
 ]

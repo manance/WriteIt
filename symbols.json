@@ -1,0 +1,8 @@
+{
+    "1repeat": "%",
+    "2repeat": "%%",
+    "measure": "|",
+    "end_measure": "|]",
+    "repeat_start": "|:",
+    "repeat_end": ":|"
+}

@@ -10,7 +10,7 @@
 
     if(isset($_POST['name_enter'])){
         if($_POST['name'] == ""){
-
+            $_SESSION['sheet_name'] = 'Unnamed Sheet';
         }else{
             $_SESSION['sheet_name'] = $_POST['name'];
         }
@@ -25,27 +25,21 @@
     $json3 = file_get_contents('music.json');
     $data3 = json_decode($json3, true);
 
-    if(isset($_POST['button'])){
-        if($_POST['button'] == 1){
-            
-        }elseif ($_POST['button'] == 2){
-            
-        }
-    }
+    $data4 = json_decode(file_get_contents('symbols.json'), true);
 
     require('sheet.class.php');
     if(isset($_POST['chord'])){
         if(isset($_SESSION['sheet_name'])){
             $sheet = new makeSheet($_POST['chord'], $_SESSION['username'], $_SESSION['sheet_name']);
-            if(isset($data3)){
-                foreach($data3 as $x){
-                    if($x['name'] == $_SESSION['sheet_name']){
-                        $sheet->updateJSON();
-                    }
-                }
-            }else{
-                $sheet->makeJSON();
-            }
+            $sheet->makeJSON();
+        }else{
+            $_SESSION['sheet_name'] = 'Unnamed Sheet';
+            $sheet = new makeSheet($_POST['chord'], $_SESSION['username'], $_SESSION['sheet_name']);
+            $sheet->makeJSON();
+        }
+        
+        if(isset($_POST['button'])){
+            $sheet->deleteChord();
         }
     }
 ?>
@@ -71,32 +65,54 @@
         <navbar class="nav">
             <a href="home.php" class="home"><img class="home_img" src="img/binder.png" alt="binder - home"></a>
             
-            <!--Doestroying song name session needs to be done-->
-            
             <form action="" method="post" class="name">
                 <input type="text" class="name" name="name" placeholder="Enter sheet name">
                 <input type="submit" class="name_enter" name="name_enter" value="ENTER">
             </form>
             <form method="post" action="" class="buttons">
-                <button class="back" type="submit" name="button" value="1">BACK</button>
+                <button class="back" type="submit" name="button">BACK</button>
             </form>
         </navbar>
         <main class="main">
             <div class="notes">
                 <div class="main_notes">
                     <?php
-                    
-                        if(isset($_POST['chord'])){
-                            echo $_POST['chord'];
+                        if($data3 == null){
+                            if(isset($_POST['chord'])){
+                                echo "<div class='note'>" . $_POST['chord'] . "</div>";
+                                $indicator = true;
+                            }
+                        }elseif($data3 != null){
+                            foreach ($data3 as $song){
+                                if(isset($_POST['chord']) && $song['chord'] == null){
+                                    echo "<div class='note'>" . $_POST['chord'] . "</div>";
+                                    
+                                }
+                                if (isset($_SESSION['sheet_name']) && $song['name'] == $_SESSION['sheet_name'] && $song['author'] == $_SESSION['username']){
+                                    if(isset($song['chord'])){
+                                        foreach ($song['chord'] as $chord){
+                                            echo "<div class='note'>" . $chord . "</div>";
+                                        }
+                                        if(isset($_POST['chord'])){
+                                                echo "<div class='note'>" . $_POST['chord'] . "</div>";
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    
+                        //Only when the json file contains songs,
+                        //it doesn't display the first chord i choose to add,
+                        //only when i add a chord after that it they both show up,
+                        //and everything goes normaly.
+                        //This only happens when the json file is not empty,
+                        //and i make a new song.
                     ?>
                 </div>
             </div>
             <div class="elements">
                 <div class="select">
                     <form method="post" action="" class="options">
-                        <button class="pauses" type="submit" name="choice" value="1">PAUSES</button>
+                        <button class="pauses" type="submit" name="choice" value="1">SYMBOLS</button>
                         <button class="symbols" type="submit" name="choice" value="2">CHORDS</button>
                     </form>
                 </div>
@@ -124,8 +140,9 @@
                                     
                                 }
                             }elseif(isset($_POST['choice']) && $_POST['choice'] == 1){
-                                echo "pauses";
-                                
+                                foreach ($data4 as $symbol){
+                                    echo "<button type='submit' name='chord' class='chord' value='" . $symbol . "'>" . $symbol . "</button>";
+                                }
                             }else{
                                 foreach ($data as $chord){
                                     echo "<button type='submit' name='chord' class='chord' value='" . $chord['chord'] . "'>" . $chord['chord'] . "</button>";

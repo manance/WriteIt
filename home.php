@@ -11,6 +11,9 @@
         header('location: index.php');
         exit();
     }
+    if(isset($_SESSION['sheet_name'])){
+        unset($_SESSION['sheet_name']);
+    }
 ?>
 
 <!DOCTYPE html>
