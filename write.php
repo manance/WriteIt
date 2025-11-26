@@ -28,18 +28,45 @@
     $data4 = json_decode(file_get_contents('symbols.json'), true);
 
     require('sheet.class.php');
+    if(isset($_POST['name_enter'])){
+        if($data3 == null){
+            $sheet = new makeSheet("♪", $_SESSION['username'], $_SESSION['sheet_name']);
+            $sheet->makeJSON();
+        }else{
+            foreach ($data3 as $song){
+                if ($song['name'] == $_SESSION['sheet_name'] && $song['author'] == $_SESSION['username']){
+                    $indicator = true;
+                    break;
+                } else{
+                    $indicator = false;
+                }
+            }
+            if(!$indicator){
+                $sheet = new makeSheet("♪", $_SESSION['username'], $_SESSION['sheet_name']);
+                $sheet->makeJSON();
+            }   
+        }
+        
+    }
     if(isset($_POST['chord'])){
         if(isset($_SESSION['sheet_name'])){
             $sheet = new makeSheet($_POST['chord'], $_SESSION['username'], $_SESSION['sheet_name']);
             $sheet->makeJSON();
         }else{
             $_SESSION['sheet_name'] = 'Unnamed Sheet';
-            $sheet = new makeSheet($_POST['chord'], $_SESSION['username'], $_SESSION['sheet_name']);
+            $sheet = new makeSheet("♪", $_SESSION['username'], $_SESSION['sheet_name']);
             $sheet->makeJSON();
         }
-        
-        if(isset($_POST['button'])){
-            $sheet->deleteChord();
+    }
+    if(isset($_POST['button'])){
+        if($data3 != null){
+            foreach ($data3 as $song){
+                if ($song['name'] == $_SESSION['sheet_name'] && $song['author'] == $_SESSION['username']){
+                    $sheet = new makeSheet("", $_SESSION['username'], $_SESSION['sheet_name']);
+                    $sheet->deleteChord();
+                    break;
+                }
+            }
         }
     }
 ?>
@@ -77,35 +104,27 @@
             <div class="notes">
                 <div class="main_notes">
                     <?php
+                        if(isset($_SESSION['sheet_name'])){
+                            echo "<div class='sheet_name'>" . $_SESSION['sheet_name'] . "</div>";
+                        }
                         if($data3 == null){
                             if(isset($_POST['chord'])){
                                 echo "<div class='note'>" . $_POST['chord'] . "</div>";
-                                $indicator = true;
                             }
                         }elseif($data3 != null){
                             foreach ($data3 as $song){
-                                if(isset($_POST['chord']) && $song['chord'] == null){
-                                    echo "<div class='note'>" . $_POST['chord'] . "</div>";
-                                    
-                                }
                                 if (isset($_SESSION['sheet_name']) && $song['name'] == $_SESSION['sheet_name'] && $song['author'] == $_SESSION['username']){
                                     if(isset($song['chord'])){
                                         foreach ($song['chord'] as $chord){
                                             echo "<div class='note'>" . $chord . "</div>";
                                         }
                                         if(isset($_POST['chord'])){
-                                                echo "<div class='note'>" . $_POST['chord'] . "</div>";
+                                            echo "<div class='note'>" . $_POST['chord'] . "</div>";
                                         }
                                     }
                                 }
                             }
                         }
-                        //Only when the json file contains songs,
-                        //it doesn't display the first chord i choose to add,
-                        //only when i add a chord after that it they both show up,
-                        //and everything goes normaly.
-                        //This only happens when the json file is not empty,
-                        //and i make a new song.
                     ?>
                 </div>
             </div>

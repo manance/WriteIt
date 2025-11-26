@@ -29,7 +29,7 @@
                 $sheet[] = $this->array;
             }else{
                 foreach ($sheet as $key => $song){
-                    if ($song['name'] == $this->getName()){
+                    if ($song['name'] == $this->getName() && $song['author'] == $this->getUserData()){
 
                         if(!isset($sheet[$key]['chord']) || !is_array($sheet[$key]['chord'])){
                             $sheet[$key]['chord'] = [];
@@ -52,13 +52,13 @@
             $json = json_decode(file_get_contents('music.json'), true);
             if($json != null){
                 foreach ($json as $key => $song){
-                    if ($song['name'] == $this->getName()){
+                    if ($song['name'] == $this->getName() && $song['author'] == $this->getUserData()){
                         array_pop($json[$key]['chord']);
                         break;
                     }
                 }
             }
-            
+            file_put_contents('music.json', json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         }
 
         private function getUserData () {
