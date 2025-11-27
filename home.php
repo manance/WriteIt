@@ -57,7 +57,10 @@
                 <button class="logout" type="submit" name="logout">Logout</button>
             </form>
         </navbar>
-        <a href="write.php">Write</a>        
+        <a href="write.php">Write</a>   
+        <main class="main">
+            
+        </main>     
     </box>
 </body>
 </html>

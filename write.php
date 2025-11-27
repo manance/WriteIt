@@ -107,6 +107,7 @@
                         if(isset($_SESSION['sheet_name'])){
                             echo "<div class='sheet_name'>" . $_SESSION['sheet_name'] . "</div>";
                         }
+                        
                         if($data3 == null){
                             if(isset($_POST['chord'])){
                                 echo "<div class='note'>" . $_POST['chord'] . "</div>";

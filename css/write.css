@@ -63,7 +63,7 @@ body{
     font-size: 2rem;
 }
 .note{
-    width: 3rem;
+    width: 10%;
     height: 3rem;
     font-size: 1rem;
     display: flex;
@@ -95,7 +95,7 @@ body{
     width: 3.5rem;
     border: 1px solid aliceblue;
     border-radius: 5px;
-    margin: 1rem 1rem 1rem 1rem;
+    margin: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -109,6 +109,7 @@ body{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     overflow-y: auto;
 }
 .error{
