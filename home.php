@@ -14,6 +14,8 @@
     if(isset($_SESSION['sheet_name'])){
         unset($_SESSION['sheet_name']);
     }
+
+    $data = json_decode(file_get_contents('music.json'), true);
 ?>
 
 <!DOCTYPE html>
@@ -56,11 +58,21 @@
             <form action=" " method="post" class="logout_form">
                 <button class="logout" type="submit" name="logout">Logout</button>
             </form>
-        </navbar>
-        <a href="write.php">Write</a>   
+        </navbar>         
         <main class="main">
-            
-        </main>     
+            <?php
+                foreach($data as $sheet){
+                    $sheet_name = str_replace(" ", "_", $sheet['name']);
+                    if($sheet['author'] == $_SESSION['username']){
+                        echo "
+                        <form class='song_card' method='post' action='sheet.php'>
+                            <button type='submit' class='song_button' name='song_button' value=" . $sheet_name . ">" . $sheet['name'] . "</button>
+                        </form>";
+                    }
+                }
+            ?>
+        </main>  
+        <a href="write.php">Write</a>    
     </box>
 </body>
 </html>

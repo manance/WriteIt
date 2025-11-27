@@ -10,12 +10,14 @@
             $this->data = $postData;
             $username = $this->getUserData();
             $name = $this->getName();
+            $date = $this->getDate();
             $chord = [];
             $chord[] = $this->data;
 
             $this->array = [
                 "name" => $name,
                 "author" => $username,
+                "date" => $date,
                 "chord" => $chord
             ];
 
@@ -30,14 +32,15 @@
             }else{
                 foreach ($sheet as $key => $song){
                     if ($song['name'] == $this->getName() && $song['author'] == $this->getUserData()){
-
                         if(!isset($sheet[$key]['chord']) || !is_array($sheet[$key]['chord'])){
                             $sheet[$key]['chord'] = [];
                         }
-
-                        $sheet[$key]['chord'][] = $this->data;
-                        $index = true;
-                        break;
+                            $sheet[$key]['chord'][] = $this->data;
+                            $index = true;
+                            if(count($sheet[$key]['chord']) % 10 == 0 && count($sheet[$key]['chord']) != 0){
+                                $sheet[$key]['chord'][] = "♪";
+                            }
+                            break;
                     }
                 }
                 if(!$index){
@@ -77,6 +80,10 @@
                 return $name;
 
             }
+        }
+
+        private function getDate () {
+            return date("Y-m-d");
         }
     }
 

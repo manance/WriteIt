@@ -16,6 +16,10 @@
         }
     }
 
+    if(isset($_POST['edit'])){
+        $_SESSION['sheet_name'] = $_POST['edit'];
+    }
+
     $json = file_get_contents('chords.json');
     $data = json_decode($json, true);
     
