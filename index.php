@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    if(isset($_SESSION['error'])){
+        $error = $_SESSION['error'];
+        unset($_SESSION['error']);
+    } else {
+        $error = "";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,11 +40,13 @@
                     <input class="input" type="text" placeholder="username" name="username" required>
                     <input class="input" type="email" placeholder="email" name="email" required>
                     <input class="input" type="password" placeholder="password" name="password" required>
+                    <label for="" class="error"><?php echo $error; ?></label>
                 </div>
                 <div class="buttons">
                     <button class="button" type="submit" name="register">Register</button>
                     <a class="button" href="login.php">Login</a>
-                </div>  
+
+                </div>
             </form>
         </register>   
     </box>

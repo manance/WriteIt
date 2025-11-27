@@ -38,14 +38,23 @@
             $id = 0;
 
         }
+        $users = "SELECT username FROM users WHERE username='$username'";
+        $users_run = mysqli_query($conn, $users);
+        if(mysqli_num_rows($users_run) > 0){
+            session_start();
+            $_SESSION['error'] = "Username already exists!";
+            header ("Location: index.php");
+            exit();
+        }else{
+            $stmt = $conn->prepare("insert into users(id, flname, username, email, PASSWORD) values (?, ?, ?, ?, ?)");
+            $stmt->bind_param("issss", $id, $flname, $username, $email, $password);
+            $stmt->execute();
+            $stmt->close();
+            session_start();
+            $_SESSION['username'] = $username;
+            header ("Location: home.php");            
+        }
 
-        $stmt = $conn->prepare("insert into users(id, flname, username, email, PASSWORD) values (?, ?, ?, ?, ?)");
-        $stmt->bind_param("issss", $id, $flname, $username, $email, $password);
-        $stmt->execute();
-        $stmt->close();
-        session_start();
-        $_SESSION['username'] = $username;
-        header ("Location: home.php");
     }
 
     function loginUser($conn, $username, $password){
@@ -92,9 +101,10 @@
             header ("Location: home.php");
 
         }else{
-            
-            $error = 1;
-
+            session_start();
+            $_SESSION['error'] = "Invalid username or password!";
+            header ("Location: login.php");
+            exit();
         }
     }
 ?>

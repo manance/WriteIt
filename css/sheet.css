@@ -29,6 +29,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: rgb(14, 14, 14) 0px 0px 7px;;
 }
 .sheet_name{
     text-align: center;
