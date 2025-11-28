@@ -101,7 +101,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
-    <title>Write</title>
+    <title>WriteIt - edit <?php if(isset($_SESSION['sheet_name'])){echo $_SESSION['sheet_name'];} ?></title>
 </head>
 <body>
     <box class="box">
