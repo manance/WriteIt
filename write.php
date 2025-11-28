@@ -73,6 +73,18 @@
             }
         }
     }
+    if(isset($_POST['delete'])){
+        if($data3 != null){
+            foreach ($data3 as $song){
+                if ($song['name'] == $_SESSION['sheet_name'] && $song['author'] == $_SESSION['username']){
+                    $sheet = new makeSheet("", $_SESSION['username'], $_SESSION['sheet_name']);
+                    $sheet->deleteSong();
+                    header("Location: home.php");
+                    break;
+                }
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,6 +114,7 @@
             </form>
             <form method="post" action="" class="buttons">
                 <button class="back" type="submit" name="button">BACK</button>
+                <button class="back" type="submit" name="delete">DELETE SHEET</button>
             </form>
         </navbar>
         <main class="main">
@@ -111,7 +124,9 @@
                         if(isset($_SESSION['sheet_name'])){
                             echo "<div class='sheet_name'>" . $_SESSION['sheet_name'] . "</div>";
                         }
-                        
+                    ?>
+                    <div class="sheet">
+                    <?php
                         if($data3 == null){
                             if(isset($_POST['chord'])){
                                 echo "<div class='note'>" . $_POST['chord'] . "</div>";
@@ -131,6 +146,8 @@
                             }
                         }
                     ?>
+                    </div>
+
                 </div>
             </div>
             <div class="elements">

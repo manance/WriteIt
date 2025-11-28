@@ -1,5 +1,5 @@
 body{
-    width: 100vw;
+    width: 98vw;
     height: 100vh; 
     margin: 0;
     font-family: "Fredoka", sans-serif;
@@ -23,6 +23,7 @@ body{
 }
 .sheet{
     margin-top: 3rem;
+    margin-bottom: 3rem;
     width: 50%;
     min-height: 90%;
     background-color: #ececec;

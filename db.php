@@ -1,6 +1,5 @@
 <?php
 
-
     $db_server = "localhost";
     $db_user = "root";
     $db_password = "";
@@ -106,5 +105,42 @@
             header ("Location: login.php");
             exit();
         }
+    }
+
+    $json = json_decode(file_get_contents('music.json'), true);
+    
+    if(isset($_POST['remove'])){
+        deleteUser($_POST['remove'], $json);
+    }
+
+    function deleteUser($username, $json){
+
+        echo $username;
+
+        $server = "localhost";
+        $user = "root";
+        $password = "";
+        $dbname = "writeit";
+        $connection = "";
+
+        $conn = new mysqli($server, $user, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+        }
+
+        if($json != null){
+            foreach($json as $i => $song){
+                if($song['author'] == $username){
+                    unset($json[$i]);
+                }
+            }
+        }
+        file_put_contents('music.json', json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        $deletion = "DELETE FROM users WHERE username='$username'";
+        if($conn->query($deletion) === TRUE){
+            header("Location: index.php");
+        }
+        session_destroy();
     }
 ?>

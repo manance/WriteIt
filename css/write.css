@@ -42,17 +42,26 @@ body{
     width: 80%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    
 }
 .main_notes{
     width: 80%;
-    height: 90%;
+    overflow-y: auto;
+    margin-top: 1rem;
+    min-height: 60vh;
     display: flex; 
     flex-wrap: wrap;
     align-content: flex-start;
     background-color: #ececec;
     border-radius: 5px;
     box-shadow: rgb(14, 14, 14) 0px 0px 7px;
+}
+.sheet{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 20%;
+    align-content: flex-start;
 }
 .sheet_name{
     text-align: center;

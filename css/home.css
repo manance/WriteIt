@@ -72,6 +72,9 @@ body{
     border-radius: 5px;
     cursor: pointer;
 }
+.submit:hover{
+    background-color: #b3b5ff;
+}
 .logout_form{
     width: 7%;
     height: 100%;
@@ -88,6 +91,9 @@ body{
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
+}
+.logout:hover{
+    background-color: #ff4c76;
 }
 .main{
     display: flex;
@@ -123,4 +129,18 @@ body{
 }
 .song_button:hover{
     background-color: #834a8c;
+}
+.write_button{
+    width: 5%;
+    height: 2rem;
+    background-color: #4eb412;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 3px;
+}
+.write_button:hover{
+    background-color: #5dd816;
 }

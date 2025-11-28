@@ -31,5 +31,9 @@
     <form action=" " method="post">
         <button type="submit" name="logout">Logout</button>
     </form>
+    <form class="delete_user" action="db.php" method="post">
+        <?php $user = $_SESSION['username']?>
+        <button class="delete_button" type="submit" name="remove" value="<?php echo $user; ?>">DELETE ACOUNT</button>
+    </form>
 </body>
 </html>

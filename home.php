@@ -16,6 +16,17 @@
     }
 
     $data = json_decode(file_get_contents('music.json'), true);
+
+    function dateSort($date1, $date2){
+        $time1 = strtotime($date1['date']);
+        $time2 = strtotime($date2['date']);
+        return $time2 - $time1;
+    }
+    function rdateSort($date1, $date2){
+        $time1 = strtotime($date1['date']);
+        $time2 = strtotime($date2['date']);
+        return $time1 - $time2;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -45,12 +56,11 @@
             <div class="search_bar">
                 <form class="form" action="" method="post">
                     <input class="search" type="text" placeholder="Search your songs..." name="search">
-                    <select name="Filter" class="dropdown" name="dropdown">
-                        <option value="" disabled selected>Filter</option>
-                        <option value="A">Title A->Z</option>
-                        <option value="Z">Title Z->A</option>
-                        <option value="new">From newest</option>
-                        <option value="old">From oldest</option>
+                    <select name="filter" class="dropdown">
+                        <option value="1">Title A->Z</option>
+                        <option value="2">Title Z->A</option>
+                        <option value="3">From newest</option>
+                        <option value="4" selected>From oldest</option>
                     </select>
                     <input type="submit" class="submit" name="submit">
                 </form>
@@ -61,18 +71,101 @@
         </navbar>         
         <main class="main">
             <?php
-                foreach($data as $sheet){
-                    $sheet_name = str_replace(" ", "_", $sheet['name']);
-                    if($sheet['author'] == $_SESSION['username']){
-                        echo "
-                        <form class='song_card' method='post' action='sheet.php'>
-                            <button type='submit' class='song_button' name='song_button' value=" . $sheet_name . ">" . $sheet['name'] . "</button>
-                        </form>";
+            if(isset($_POST['submit'])){
+                if($_POST['search'] != ""){
+                    $search = $_POST['search'];
+                    if($data != null){
+                        if($_POST['filter'] == 1){
+                            sort($data);
+                        }elseif($_POST['filter'] == 2){
+                            rsort($data);
+                        }elseif($_POST['filter'] == 3){
+                            usort($data, 'sortDate');
+                        }elseif($_POST['filter'] == 3){
+                            usort($data, 'rsortDate');
+                        }
+                        foreach($data as $sheet){
+                            $sheet_name = str_replace(" ", "_", $sheet['name']);
+                            similar_text($sheet['name'],$_POST['search'],$percent);
+                            if($sheet['author'] == $_SESSION['username'] && $percent > 50){
+                                echo "
+                                <form class='song_card' method='post' action='sheet.php'>
+                                    <button type='submit' class='song_button' name='song_button' value=" . $sheet_name . ">" . $sheet['name'] . "</button>
+                                </form>";
+                            }
+                        }
                     }
                 }
+                if($_POST['filter'] == 1 && $_POST['search'] == ""){
+                    if($data != null){
+                        sort($data);
+                        foreach($data as $sheet){
+                            $sheet_name = str_replace(" ", "_", $sheet['name']); 
+                            if($sheet['author'] == $_SESSION['username']){
+                                echo "
+                                <form class='song_card' method='post' action='sheet.php'>
+                                    <button type='submit' class='song_button' name='song_button' value=" . $sheet_name . ">" . $sheet['name'] . "</button>
+                                </form>";
+                            }
+                        }
+                    }
+                }elseif($_POST['filter'] == 2 && $_POST['search'] == ""){
+                    if($data != null){
+                        rsort($data);
+                        foreach($data as $sheet){
+                            $sheet_name = str_replace(" ", "_", $sheet['name']); 
+                            if($sheet['author'] == $_SESSION['username']){
+                                echo "
+                                <form class='song_card' method='post' action='sheet.php'>
+                                    <button type='submit' class='song_button' name='song_button' value=" . $sheet_name . ">" . $sheet['name'] . "</button>
+                                </form>";
+                            }
+                        }
+                    }
+                }elseif($_POST['filter'] == 3 && $_POST['search'] == ""){
+                    if($data != null){
+                        usort($data, 'dateSort');
+                        foreach($data as $sheet){
+                            $sheet_name = str_replace(" ", "_", $sheet['name']); 
+                            if($sheet['author'] == $_SESSION['username']){
+                                echo "
+                                <form class='song_card' method='post' action='sheet.php'>
+                                    <button type='submit' class='song_button' name='song_button' value=" . $sheet_name . ">" . $sheet['name'] . "</button>
+                                </form>";
+                            }
+                        }
+                    }
+                }elseif($_POST['filter'] == 4 && $_POST['search'] == ""){
+                    if($data != null){
+                        usort($data, 'rdateSort');
+                        foreach($data as $sheet){
+                            $sheet_name = str_replace(" ", "_", $sheet['name']); 
+                            if($sheet['author'] == $_SESSION['username']){
+                                echo "
+                                <form class='song_card' method='post' action='sheet.php'>
+                                    <button type='submit' class='song_button' name='song_button' value=" . $sheet_name . ">" . $sheet['name'] . "</button>
+                                </form>";
+                            }
+                        }
+                    }
+                }
+            }else{
+                if($data != null){
+                    foreach($data as $sheet){
+                        $sheet_name = str_replace(" ", "_", $sheet['name']); 
+                        if($sheet['author'] == $_SESSION['username']){
+                            echo "
+                            <form class='song_card' method='post' action='sheet.php'>
+                                <button type='submit' class='song_button' name='song_button' value=" . $sheet_name . ">" . $sheet['name'] . "</button>
+                            </form>";
+                        }
+                    }
+                }
+            }
+
             ?>
         </main>  
-        <a href="write.php">Write</a>    
+        <a class="write_button" href="write.php">Write</a>    
     </box>
 </body>
 </html>

@@ -85,6 +85,19 @@
         private function getDate () {
             return date("Y-m-d");
         }
+
+        public function deleteSong (){
+            $songs = json_decode(file_get_contents('music.json'), true);
+            if($songs != null){
+                foreach($songs as $i => $sheet_song){
+                    if($sheet_song['name'] == $this->getName() && $sheet_song['author'] == $this->getUserData()){
+                        unset($songs[$i]);
+                        break;
+                    }
+                }
+            }
+            file_put_contents('music.json', json_encode($songs, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        }
     }
 
 ?>
