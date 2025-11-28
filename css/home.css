@@ -20,16 +20,23 @@ body{
     align-items: center;
 }
 .profile{
-    width: 7%;
-    height: 100%;
+    width: 10%;
+    height: 30%;
+    text-decoration: none;
+    font-family: 'Parisienne', cursive;
+    font-size: 1.5rem;
+    color: white;
+    border-bottom: 1px solid white;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.prof_img{
-    width: 83%;
-    height: 83%;
-    object-fit: contain;
+.profile:hover{
+    transition: 0.3s;
+    background-color: #300683;
+    height: 50%;
+    border: none;
+    border-radius: 3px;
 }
 .search_bar{
     width: 40%;
@@ -40,60 +47,97 @@ body{
 }
 .form{
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: space-between;
-    height: 50%;
+    gap: 1rem;
+    height: 30%;
     width: 100%;
 }
 .search{
     height: 100%;
     width: 39%;
-    border-radius: 5px 0 0 5px;
-    border: none;
-    background-color: #a8c3ff;
+    color: white;
+    border-bottom: 1px solid white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: transparent;
+    font-family: "Fredoka", sans-serif;
+    text-align: center;
+    display: flex;
+    align-items:flex-end;
+    font-size: 1rem;
 }
 .search::placeholder{
-    color: rgb(4, 19, 46);
+    color: rgb(115, 160, 245);
+    font-size: 1rem;
+}
+.search:focus{
+    outline: none;
 }
 .dropdown{
     height: 100%;
     width: 40%;
-    border: none;
-    background-color: #a8c3ff;
-    color: rgb(4, 19, 46);
+    border: 1px solid #150436;
+    border-bottom: 1px solid white;
+    font-family: "Fredoka", sans-serif;
+    background-color: transparent;
+    text-align: center;
+    color: white;
 }
+.dropdown option{
+    background-color: #150436;
+    color: white;
+}
+
+.dropdown:focus{
+    outline: none;
+}
+
 .submit{
     height: 100%;
     width: 19%;
     border: none;
-    background-color: #8385ff;
+    padding-bottom: 0;
+    background-color: transparent;
     color: white;
     font-weight: bold;
-    border-radius: 5px;
     cursor: pointer;
+    border-bottom: 1px solid white;
 }
 .submit:hover{
-    background-color: #b3b5ff;
+    align-self: center;
+    transition: 0.3s;
+    background-color: #300683;
+    height: 200%;
+    border: none;
+    border-radius: 3px;
 }
 .logout_form{
     width: 7%;
-    height: 100%;
+    height: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.logout{
+.logout_form:hover{
+    transition: 0.3s;
     height: 50%;
+}
+.logout{
+    height: 100%;
     width: 80%;
     border: none;
-    background-color: #f5043c;
+    background-color: transparent;
     color: white;
     font-weight: bold;
-    border-radius: 5px;
+    border-bottom: 1px solid white;
     cursor: pointer;
 }
 .logout:hover{
-    background-color: #ff4c76;
+    background-color: #c7002e;
+    border: none;
+    border-radius: 3px;
 }
 .main{
     display: flex;
@@ -143,4 +187,106 @@ body{
 }
 .write_button:hover{
     background-color: #5dd816;
+}
+.last{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6%;
+}
+@media only screen and (max-width: 997px){
+    .search_bar{
+        width: 60%;
+    }
+    .write_button{
+        width: 15%;
+    }
+    .logout_form{
+        width: 14%;
+    }
+}
+@media only screen and (max-width: 482px){
+    .profile{
+        font-size: 1rem;
+    }
+    .search{
+        font-size: 0.6rem;
+    }
+    .search::placeholder{
+        font-size: 0.6rem;
+    }
+    .submit{
+        font-size: 0.6rem;
+    }
+    .dropdown{
+        font-size: 0.6rem;
+    }
+    .logout{
+        font-size: 0.6rem;
+    }
+}
+@media only screen and (min-height: 1000px){
+    .song_card{
+        height: 5rem;
+    }
+    .song_card{
+        height: 5rem;
+    }
+    .song_button{
+        font-size: 2rem;
+    }
+    .profile{
+        font-size: 2.5rem;
+    }
+    .search{
+        font-size: 1.5rem;
+    }
+    .search::placeholder{
+        font-size: 1.5rem;
+    }
+    .submit{
+        font-size: 1.5rem;
+    }
+    .dropdown{
+        font-size: 1.5rem;
+    }
+    .logout{
+        font-size: 1.5rem;
+    }
+    .write_button{
+        height: 100%;
+        font-size: 1.5rem;
+    }
+}
+@media only screen and (min-width: 1900px){
+    .song_card{
+        height: 5rem;
+    }
+    .song_button{
+        font-size: 2rem;
+    }
+    .profile{
+        font-size: 2.5rem;
+    }
+    .search{
+        font-size: 1.5rem;
+    }
+    .search::placeholder{
+        font-size: 1.5rem;
+    }
+    .submit{
+        font-size: 1.5rem;
+    }
+    .dropdown{
+        font-size: 1.5rem;
+    }
+    .logout{
+        font-size: 1.5rem;
+    }
+    .write_button{
+        height: 100%;
+        font-size: 1.5rem;
+    }
+    
 }

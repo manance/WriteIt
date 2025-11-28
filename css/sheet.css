@@ -79,3 +79,19 @@ body{
     background-color: rgb(14, 169, 0);
     cursor: pointer;
 }
+@media only screen and (max-width: 894px){
+    .edit{
+        width: 15%;
+    }
+    .back{
+        width: 15%;
+    }
+}
+@media only screen and (min-width: 1500px){
+    .chord{
+        font-size: 1.5rem;
+    }
+    .sheet_name{
+        font-size: 2.5rem;
+    }
+}

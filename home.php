@@ -52,7 +52,7 @@
 <body>
     <box class="box">
         <navbar class="nav">
-            <a href="profile.php" class="profile"><img class="prof_img" src="img/user.png" alt=""></a>
+            <a href="profile.php" class="profile"><?php echo $_SESSION['username']?></a>
             <div class="search_bar">
                 <form class="form" action="" method="post">
                     <input class="search" type="text" placeholder="Search your songs..." name="search">
@@ -164,8 +164,10 @@
             }
 
             ?>
-        </main>  
-        <a class="write_button" href="write.php">Write</a>    
+        </main> 
+        <div class="last">
+            <a class="write_button" href="write.php">Write</a>   
+        </div> 
     </box>
 </body>
 </html>

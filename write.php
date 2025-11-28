@@ -106,15 +106,15 @@
 <body>
     <box class="box">
         <navbar class="nav">
-            <a href="home.php" class="home"><img class="home_img" src="img/binder.png" alt="binder - home"></a>
+            <a href="home.php" class="home">HOME</a>
             
             <form action="" method="post" class="name">
-                <input type="text" class="name" name="name" placeholder="Enter sheet name">
-                <input type="submit" class="name_enter" name="name_enter" value="ENTER">
+                <input type="text" class="input" name="name" placeholder="Enter sheet name">
+                <input type="submit" class="name_enter" name="name_enter" value="Enter">
             </form>
             <form method="post" action="" class="buttons">
                 <button class="back" type="submit" name="button">BACK</button>
-                <button class="back" type="submit" name="delete">DELETE SHEET</button>
+                <button id="delete" class="back" type="submit" name="delete">DELETE SHEET</button>
             </form>
         </navbar>
         <main class="main">
