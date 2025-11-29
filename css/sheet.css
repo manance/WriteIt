@@ -48,6 +48,7 @@ body{
     width: 10%;
     height: 3rem;
     font-size: 1rem;
+    border-bottom: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,10 +87,27 @@ body{
     .back{
         width: 15%;
     }
+    .sheet_name{
+        font-size: 1.5rem;
+    }
 }
 @media only screen and (min-width: 1500px){
     .chord{
         font-size: 1.5rem;
+    }
+    .sheet_name{
+        font-size: 2.5rem;
+    }
+    .back{
+        font-size: 1.5rem;
+    }
+    .edit_button{
+        font-size: 1.5rem;
+    }
+}
+@media only screen and (min-width: 2200px){
+    .chord{
+        font-size: 2rem;
     }
     .sheet_name{
         font-size: 2.5rem;

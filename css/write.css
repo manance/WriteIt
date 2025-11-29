@@ -147,7 +147,7 @@ body{
     text-align: center;
     width: 100%;
     height: 2rem;
-    margin: 0;
+    margin-bottom: 5px;
     font-weight: 500;
     font-size: 2rem;
 }
@@ -155,6 +155,7 @@ body{
     width: 10%;
     height: 3rem;
     font-size: 1rem;
+    border-bottom: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -288,6 +289,7 @@ body{
 }
 .chord:hover{
     background-color: #42075a;
+    border: none;
     cursor: pointer;
 }
 .chords{
@@ -297,7 +299,6 @@ body{
     flex-wrap: wrap;
     overflow-y: auto;
 }
-.chords::sc
 .error{
     color: aliceblue;
     height: 5rem;
@@ -308,4 +309,198 @@ body{
     justify-content: center;
     align-items: center;  
     margin-left: 5px;
+}
+@media only screen and (max-width:1675px){
+    .buttons{
+        width: 30%;
+    }
+}
+@media only screen and (max-width:1222px){
+    .buttons{
+        width: 30%;
+    }
+    .name{
+        width: 30%;
+    }
+    .home{
+        font-size: 0.75rem;
+    }
+    .input{
+        font-size: 0.75rem;
+    }
+    .name_enter{
+        font-size: 0.75rem;
+    }
+    .back{
+        font-size: 0.75rem;
+        width: 30%;
+    }
+    #delete{
+        width: 60%;
+    }
+}
+@media only screen and (max-width: 1100px){
+    .note{
+        font-size: 0.75rem;
+        height: 2rem;
+    }
+    .pauses{
+        font-size: 0.5rem;
+    }
+    .symbols{
+        font-size: 0.5rem;
+    }
+    .base_note{
+        font-size: 0.5rem;
+    }
+    .base_note::placeholder{
+        font-size: 0.5rem;
+    }
+    .enter{
+        font-size: 0.5rem;
+    }
+    .chord{
+        font-size: 0.5rem;
+        height: 3.5rem;
+        width: 2rem;
+    }
+}
+@media only screen and (max-width: 660px){
+    .note{
+        font-size: 0.4rem;
+        height: 1.75rem;
+    }
+}
+@media only screen and (max-width: 575px){
+    .home{
+        font-size: 0.5rem;
+    }
+    .input{
+        font-size: 0.5rem;
+    }
+    .name_enter{
+        font-size: 0.5rem;
+    }
+    .back{
+        font-size: 0.5rem;
+    }
+}
+@media only screen and (max-height: 598px){
+    .select{
+        height: 8%;
+    }
+    .search{
+        height: 8%;
+    }
+    .base_note{
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+    .base_note::placeholder{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .pauses{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .symbols{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .home{
+        height: 40%;
+    }
+    .name{
+        height: 40%;
+    }
+    .buttons{
+        height: 40%;
+    }
+}
+@media only screen and (max-width: 730px){
+    .chord{
+        font-size: 0.4rem;
+        height: 2rem;
+        width: 1.5rem;
+    }
+    .sheet_name{
+        font-size: 1rem;
+    }
+}
+@media only screen and (max-width: 661px){
+    .pauses{
+        font-size: 0.3rem;
+    }
+    .symbols{
+        font-size: 0.3rem;
+    }
+    .base_note{
+        font-size: 0.3rem;
+        width: 40%;
+    }
+    .base_note::placeholder{
+        font-size: 0.3rem;
+    }
+    .enter{
+        font-size: 0.3rem;
+        width: 50%;
+    }
+}
+@media only screen and (min-width: 1444px){
+    .note{
+        font-size: 1.5rem;
+    }
+    .sheet_name{
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+}
+@media only screen and (min-width: 2000px){
+    .note{
+        font-size: 2rem;
+        height: 5rem;
+    }
+    .buttons{
+        width: 30%;
+    }
+    .name{
+        width: 30%;
+    }
+    .home{
+        font-size: 1.5rem;
+    }
+    .input{
+        font-size: 1.5rem;
+    }
+    .name_enter{
+        font-size: 1.5rem;
+    }
+    .back{
+        font-size: 1.5rem;
+    }
+    .pauses{
+        font-size: 1.5rem;
+    }
+    .symbols{
+        font-size: 1.5rem;
+    }
+    .base_note{
+        font-size: 1.5rem;
+    }
+    .base_note::placeholder{
+        font-size: 1.5rem;
+    }
+    .enter{
+        font-size: 1.5rem;
+    }
+    .chord{
+        height: 7rem;
+        width: 5.5rem;
+        font-size: 1.5rem;
+    }
 }

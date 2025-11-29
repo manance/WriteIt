@@ -81,4 +81,28 @@ body{
     .back{
         width: 15%;
     }
-} 
+}
+@media only screen and (min-width: 1910px){
+    .name{
+        font-size: 10rem;
+    }
+}
+@media only screen and (min-width: 2100px){
+    .logout{
+        width: 40%;
+        height: 100%;
+    }
+    .logout_button{
+        font-size: 1.7rem;
+    }
+    .delete_user{
+        width: 40%;
+        height: 100%;
+    }
+    .delete_button{
+        font-size: 1.7rem;
+    }
+    .buttons{
+        height: 5%;
+    }
+}
