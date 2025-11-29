@@ -22,7 +22,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sheet-<?php echo $_SESSION['sheet_name'];?></title>
+    <title>Sheet-<?php if(isset($_SESSION['sheet_name'])){echo $_SESSION['sheet_name'];}?></title>
     <link rel="stylesheet" href="css/sheet.css">
     <!-- Title font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,11 +37,11 @@
 <body>
     <a href="home.php" class="back">BACK</a>
     <div class="sheet">
-        <h1 class="sheet_name"><?php echo $_SESSION['sheet_name'];?></h1>
+        <h1 class="sheet_name"><?php if(isset($_SESSION['sheet_name'])){echo $_SESSION['sheet_name'];}?></h1>
         <div class="chords">
             <?php
                 foreach($data as $sheet){
-                    if ($sheet['name'] == $_SESSION['sheet_name'] && $sheet['author'] == $_SESSION['username']){
+                    if (isset($_SESSION['sheet_name']) && $sheet['name'] == $_SESSION['sheet_name'] && $sheet['author'] == $_SESSION['username']){
                         if(isset($sheet['chord']) && is_array($sheet['chord'])){
                             foreach ($sheet['chord'] as $chord){
                                 echo "<div class='chord'>" . htmlspecialchars($chord, ENT_QUOTES, 'UTF-8') . "</div>";
