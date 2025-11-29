@@ -36,6 +36,7 @@
                             $sheet[$key]['chord'] = [];
                         }
                             $sheet[$key]['chord'][] = $this->data;
+                            $sheet[$key]['date'] = $this->getDate();
                             $index = true;
                             if(count($sheet[$key]['chord']) % 10 == 0 && count($sheet[$key]['chord']) != 0){
                                 $sheet[$key]['chord'][] = "♪";
@@ -57,6 +58,7 @@
                 foreach ($json as $key => $song){
                     if ($song['name'] == $this->getName() && $song['author'] == $this->getUserData()){
                         array_pop($json[$key]['chord']);
+                        $sheet[$key]['date'] = $this->getDate();
                         break;
                     }
                 }
@@ -83,7 +85,7 @@
         }
 
         private function getDate () {
-            return date("Y-m-d");
+            return date("Y-m-d h:i:s");
         }
 
         public function deleteSong (){
