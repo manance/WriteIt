@@ -177,7 +177,7 @@ body{
 .write_button{
     width: 5%;
     height: 2rem;
-    background-color: #4eb412;
+    background-color: #1225b4;
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -186,7 +186,7 @@ body{
     border-radius: 3px;
 }
 .write_button:hover{
-    background-color: #5dd816;
+    background-color: #1a4cf2;
 }
 .last{
     width: 100%;

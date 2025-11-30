@@ -60,7 +60,7 @@ body{
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    background-color: rgb(10, 121, 0);
+    background-color: #1225b4;
     color: white;
     border-radius: 2px;
 }
@@ -71,13 +71,13 @@ body{
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    background-color: rgb(10, 121, 0);
+    background-color: #1225b4;
     color: white;
     border-radius: 2px;
     border: none;
 }
 .edit_button:hover{
-    background-color: rgb(14, 169, 0);
+    background-color: #1a4cf2;
     cursor: pointer;
 }
 @media only screen and (max-width: 894px){

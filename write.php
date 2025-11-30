@@ -62,7 +62,7 @@
             $sheet->makeJSON();
         }
     }
-    if(isset($_POST['button'])){
+    if(isset($_POST['button']) && isset($_SESSION['sheet_name'])){
         if($data3 != null){
             foreach ($data3 as $song){
                 if ($song['name'] == $_SESSION['sheet_name'] && $song['author'] == $_SESSION['username']){
@@ -73,7 +73,7 @@
             }
         }
     }
-    if(isset($_POST['delete'])){
+    if(isset($_POST['delete']) && isset($_SESSION['sheet_name'])){
         if($data3 != null){
             foreach ($data3 as $song){
                 if ($song['name'] == $_SESSION['sheet_name'] && $song['author'] == $_SESSION['username']){

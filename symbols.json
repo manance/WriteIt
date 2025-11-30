@@ -4,5 +4,6 @@
     "measure": "|",
     "end_measure": "|]",
     "repeat_start": "|:",
-    "repeat_end": ":|"
+    "repeat_end": ":|",
+    "row_start": "♪"
 }
