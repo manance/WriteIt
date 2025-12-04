@@ -58,7 +58,7 @@
 
     function loginUser($conn, $username, $password){
 
-        $query = "SELECT * FROM users WHERE username='$username'";
+        $query = "SELECT * FROM users WHERE username='" . $username . "'";
         $query_run = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($query_run) > 0){
