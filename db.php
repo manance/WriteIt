@@ -45,7 +45,7 @@
             header ("Location: index.php");
             exit();
         }else{
-            $stmt = $conn->prepare("insert into users(id, flname, username, email, PASSWORD) values (?, ?, ?, ?, ?)");
+            $stmt = $conn->prepare("insert into users(id, flname, username, email, password) values (?, ?, ?, ?, ?)");
             $stmt->bind_param("issss", $id, $flname, $username, $email, $password);
             $stmt->execute();
             $stmt->close();
@@ -65,7 +65,7 @@
 
             $row = mysqli_fetch_array($query_run);
 
-            if(password_verify($password, $row['PASSWORD'])){
+            if(password_verify($password, $row['password'])){
 
                 return TRUE;
 
